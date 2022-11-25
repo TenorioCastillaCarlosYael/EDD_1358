@@ -1,0 +1,8 @@
+Enlace al repositorio en github que contiene el código fuente del programa.
+https://github.com/TenorioCastillaCarlosYael/EDD_1358
+
+Enlace al archivo "Empleado" en el repositorio.
+https://github.com/TenorioCastillaCarlosYael/EDD_1358/blob/main/Empleado.java
+
+Enlace al archivo "Nomina" en el repositorio.
+https://github.com/TenorioCastillaCarlosYael/EDD_1358/blob/main/Niomina.java

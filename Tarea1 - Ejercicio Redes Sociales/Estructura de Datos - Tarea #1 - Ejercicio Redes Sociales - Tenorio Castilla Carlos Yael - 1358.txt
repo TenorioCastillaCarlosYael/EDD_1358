@@ -1,0 +1,5 @@
+Enlace a repositorio en github que contiene el código fuente del programa.
+https://github.com/TenorioCastillaCarlosYael/EDD_1358
+
+Enlace a la descarga del programa limpio y empaquetado para evitar usar NETBEANS.
+https://www.mediafire.com/file/i12arjqjw60boj6/Tarea1_Ejercicio_Redes_Sociales-1.0.jar/file

@@ -1,0 +1,3 @@
+https://github.com/TenorioCastillaCarlosYael/EDD_1358/tree/main/Tarea6%20-%20Laberinto
+
+Niveles 1 a 3 son fáciles. Nivel 5 destruye computadoras (no lo hace pero es de 50x50).
