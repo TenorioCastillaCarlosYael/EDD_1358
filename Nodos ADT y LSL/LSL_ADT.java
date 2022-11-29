@@ -43,13 +43,8 @@ public class LSL_ADT<T> {
         if (this.estaVacia()) {
             return 0;
         } else {
-            rozmiar = 1;
-            while (Aux.getSiguiente() != null) {
-                Aux = Aux.getSiguiente();
-                rozmiar++;
-            }
+            return this.rozmiar;
         }
-        return this.rozmiar;
     }
 
     public T regresarFinal() {
@@ -64,12 +59,12 @@ public class LSL_ADT<T> {
         }
     }
 
-    public T regresarInicio() {
+    public T regresarInicio() { //Adición para las colas.
         if (this.estaVacia()) {
             return null;
         } else {
             Nodo Aux = cabeza;
-            return (T)Aux.getDato();
+            return (T) Aux.getDato();
         }
     }
 
@@ -83,6 +78,7 @@ public class LSL_ADT<T> {
                 Temp = Temp.getSiguiente();
             }
             Temp.setSiguiente(Aux);
+            rozmiar++;
         }
     }
 
@@ -93,6 +89,7 @@ public class LSL_ADT<T> {
         } else {
             Aux.setSiguiente(this.cabeza);
             this.cabeza = Aux;
+            rozmiar++;
         }
     }
 
@@ -104,6 +101,7 @@ public class LSL_ADT<T> {
         }
         Aux.setSiguiente(Tem.getSiguiente());
         Tem.setSiguiente(Aux);
+        rozmiar++;
     }
 
     public void eliminar(int posición) {
@@ -111,8 +109,8 @@ public class LSL_ADT<T> {
         if (this.estaVacia()) {
             System.out.println("Lista vacia, llénala primero alcornoque");
         } else {
-            if (posición > cabeza.toString().length()) {
-                System.out.println("La posición introducida no existe en esta lista, alcornoque");
+            if (posición > this.rozmiar) {
+                System.out.println("La posición introducida no existe en esta lista, alcornoque.");
             } else {
                 for (int contador = 1; contador < posición - 1; contador++) {
                     Temp = Temp.getSiguiente();
@@ -120,6 +118,7 @@ public class LSL_ADT<T> {
             }
         }
         Temp.setSiguiente(Temp.getSiguiente().getSiguiente());
+        rozmiar--;
     }
 
     public void eliminarElPrimero() {
@@ -140,6 +139,7 @@ public class LSL_ADT<T> {
                 Aux = Aux.getSiguiente();
             }
             Aux.setSiguiente(null);
+            rozmiar--;
         }
     }
 
@@ -164,7 +164,7 @@ public class LSL_ADT<T> {
 
     public void actualizarValor(T dato, T actualizado) {
         Nodo Aux = cabeza;
-        while (Aux.getSiguiente() != dato) {
+        while (!Aux.getDato().equals(dato)) {
             Aux = Aux.getSiguiente();
         }
         Aux.setDato(actualizado);
@@ -173,16 +173,16 @@ public class LSL_ADT<T> {
     public void transversal() {
         Nodo nodo_actual = this.cabeza;
         while (nodo_actual != null) {
-            System.out.print(nodo_actual);
+            System.out.print(nodo_actual + "->");
             nodo_actual = nodo_actual.getSiguiente();
         }
         System.out.println("");
     }
 
-    public void transversalPila() {
+    public void transversalPila() { //Método solo para mostrar las pilas.
         Nodo nodo_actual = this.cabeza;
         while (nodo_actual != null) {
-            System.out.println(nodo_actual.toStringPila());
+            System.out.println(nodo_actual);
             nodo_actual = nodo_actual.getSiguiente();
         }
     }
@@ -193,22 +193,24 @@ public class LSL_ADT<T> {
     }
 
     public static void main(String[] args) {
-        LSL_ADT cabeza = new LSL_ADT();
-        cabeza.agregarAlFinal(18);
-        cabeza.agregarAlFinal(23);
-        cabeza.agregarAlFinal(14);
-        cabeza.agregarAlFinal(8);
-        cabeza.agregarAlFinal(27);
-        cabeza.transversal();
-        cabeza.agregarAlInicio(303);
-        cabeza.transversal();
-        cabeza.eliminar(3);
-        System.out.println(cabeza.buscarValor(18));
-        System.out.println(cabeza.buscarValor(8));
-        cabeza.eliminarElFinal();
-        cabeza.transversal();
-        System.out.println(cabeza.buscarValor(18));
-        System.out.println(cabeza.toString());
-        //System.out.println(cabeza.toString());
+        LSL_ADT Lista = new LSL_ADT(); //Constructor
+        Lista.agregarAlInicio(88); //Agrega al inicio.
+        Lista.agregarAlInicio(1);
+        Lista.agregarAlInicio(18);
+        Lista.agregarAlFinal(10); //Agrega al final.
+        Lista.agregarAlFinal(202);
+        Lista.agregarAlFinal(35);
+        System.out.println(Lista.getRozmiar()); //Regresa en enteros el tamaño 
+        //de la lista.
+        Lista.transversal(); //Muestra los valores actuales de la lista.
+        Lista.actualizarValor(202, 2002); //Cambia el valor a buscar por otro.
+        Lista.agregarDespuesDe(5, 27); //Agrega un elemento después de una posición.
+        System.out.println(Lista.buscarValor(18)); //Regresa en enteros la posición 
+        //de ese valor.
+        Lista.transversal();
+        Lista.eliminarElFinal();
+        Lista.eliminarElPrimero();
+        Lista.eliminar(4);
+        Lista.transversal();
     }
 }
